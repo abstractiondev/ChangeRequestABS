@@ -47,6 +47,11 @@ This is just an estimation, the further analyzing of the change in respect of th
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
+		<xs:attribute name="dueDate" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>(Opt) Due date. If not given, the processing defaults to process specific logic - which is usually today, that is due immediately.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 	</xs:complexType>
 	<xs:complexType name="ChangeRequestsType">
 		<xs:sequence>

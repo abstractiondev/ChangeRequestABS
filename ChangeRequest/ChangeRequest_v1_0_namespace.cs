@@ -52,6 +52,10 @@ namespace ChangeRequest_v1_0 {
         
         private ChangeRequestTypeChangeType changeTypeField;
         
+        private System.DateTime dueDateField;
+        
+        private bool dueDateFieldSpecified;
+        
         public ChangeRequestType() {
             this.priorityField = ChangeRequestTypePriority.Undefined;
             this.changeTypeField = ChangeRequestTypeChangeType.Undefined;
@@ -99,6 +103,28 @@ namespace ChangeRequest_v1_0 {
             }
             set {
                 this.changeTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="date")]
+        public System.DateTime dueDate {
+            get {
+                return this.dueDateField;
+            }
+            set {
+                this.dueDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool dueDateSpecified {
+            get {
+                return this.dueDateFieldSpecified;
+            }
+            set {
+                this.dueDateFieldSpecified = value;
             }
         }
     }
