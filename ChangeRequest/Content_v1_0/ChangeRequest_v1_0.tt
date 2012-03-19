@@ -1,0 +1,12 @@
+﻿<#@ template language="C#" hostspecific="True" debug="True" #>
+<#@ output extension="?" #>
+<#@ include file="T4Toolbox.tt" #>
+<#@ include file="..\..\..\abscommon\CommonInclude\Common\XSDToIncludeGenerator.ttinclude" #>
+<#
+	System.IO.DirectoryInfo dirInfo = new System.IO.DirectoryInfo(System.IO.Path.GetDirectoryName(Host.TemplateFile));
+	dirInfo = dirInfo.Parent;
+	// No need for T4 generation so far for change; it's been used to transform to documentation and to integrate between systems
+	// GenerateTTInclude(Host.TemplateFile, dirInfo.FullName);								
+	GenerateTTInclude(Host.TemplateFile, dirInfo.FullName, true, false);								
+#>
+								

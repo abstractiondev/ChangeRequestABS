@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 sp1 (http://www.altova.com) by Kalle Launiala (Citrus Solutions Oy) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="ChangeRequestAbstraction" type="ChangeRequestAbstractionType">
+		<xs:annotation>
+			<xs:documentation>Change to existing system. May be new functionality or change to existing functionality.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ChangeRequestType">
+		<xs:sequence>
+			<xs:element name="Description" type="xs:string"/>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+		<xs:attribute name="priority" default="Undefined">
+			<xs:annotation>
+				<xs:documentation>(Opt = "Undefined") Priority of the change based on initial estimation.
+
+Critical = The change is required to existing system already, the system cannot function without this change.
+
+Urgent = The change is really high priority and needs to be applied ASAP.
+
+Normal = Normal change request, can be dealt with normal procedure.
+
+Low = Development change request. Can be handled when the new version's features are designed.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Undefined"/>
+					<xs:enumeration value="Critical"/>
+					<xs:enumeration value="Urgent"/>
+					<xs:enumeration value="Normal"/>
+					<xs:enumeration value="Low"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="changeType" default="Undefined">
+			<xs:annotation>
+				<xs:documentation>(Opt = "Undefined") Change type when better estimated. Either change to existing functionality or completely new functionality.
+
+This is just an estimation, the further analyzing of the change in respect of the existing system will reveal whether the change is new functionality or change to existing.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Undefined"/>
+					<xs:enumeration value="ChangeToExistingFunctionality"/>
+					<xs:enumeration value="NewFunctionality"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ChangeRequestsType">
+		<xs:sequence>
+			<xs:element name="ChangeRequest" type="ChangeRequestType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ChangeRequestAbstractionType">
+		<xs:sequence>
+			<xs:element name="ChangeRequests" type="ChangeRequestsType"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
