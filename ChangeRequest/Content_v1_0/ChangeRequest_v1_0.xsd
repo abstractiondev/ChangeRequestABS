@@ -53,14 +53,70 @@ This is just an estimation, the further analyzing of the change in respect of th
 			</xs:annotation>
 		</xs:attribute>
 	</xs:complexType>
+	<xs:complexType name="PackagedChangeRequestType">
+		<xs:sequence>
+			<xs:element name="Description" type="xs:string"/>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+		<xs:attribute name="changeType" use="required">
+			<xs:annotation>
+				<xs:documentation>Change type when designed. Either change to existing functionality or completely new functionality.
+
+In packaged change request, this information needs to be designed at the stage.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="ChangeToExistingFunctionality"/>
+					<xs:enumeration value="NewFunctionality"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ChangeRequestPackageType">
+		<xs:sequence>
+			<xs:element name="PackagedChangeRequest" type="PackagedChangeRequestType" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Change request package name.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="priority" use="required">
+			<xs:annotation>
+				<xs:documentation>Priority of the change package based on agreed decision.
+
+Critical = The change is required to existing system already, the system cannot function without this change.
+
+Urgent = The change is really high priority and needs to be applied ASAP.
+
+Normal = Normal change request, can be dealt with normal procedure.
+
+Low = Development change request. Can be handled when the new version's features are designed.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Critical"/>
+					<xs:enumeration value="Urgent"/>
+					<xs:enumeration value="Normal"/>
+					<xs:enumeration value="Low"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="dueDate" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation>Due date of the change request package to be in the testing.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ChangeRequestAbstractionType">
+		<xs:choice>
+			<xs:element name="ChangeRequests" type="ChangeRequestsType"/>
+			<xs:element name="ChangeRequestPackage" type="ChangeRequestPackageType"/>
+		</xs:choice>
+	</xs:complexType>
 	<xs:complexType name="ChangeRequestsType">
 		<xs:sequence>
 			<xs:element name="ChangeRequest" type="ChangeRequestType" maxOccurs="unbounded"/>
-		</xs:sequence>
-	</xs:complexType>
-	<xs:complexType name="ChangeRequestAbstractionType">
-		<xs:sequence>
-			<xs:element name="ChangeRequests" type="ChangeRequestsType"/>
 		</xs:sequence>
 	</xs:complexType>
 </xs:schema>

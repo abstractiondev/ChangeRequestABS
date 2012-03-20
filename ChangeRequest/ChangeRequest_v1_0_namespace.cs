@@ -23,16 +23,157 @@ namespace ChangeRequest_v1_0 {
     [System.Xml.Serialization.XmlRootAttribute("ChangeRequestAbstraction", Namespace="", IsNullable=false)]
     public partial class ChangeRequestAbstractionType {
         
-        private ChangeRequestType[] changeRequestsField;
+        private object itemField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("ChangeRequest", IsNullable=false)]
-        public ChangeRequestType[] ChangeRequests {
+        [System.Xml.Serialization.XmlElementAttribute("ChangeRequestPackage", typeof(ChangeRequestPackageType))]
+        [System.Xml.Serialization.XmlElementAttribute("ChangeRequests", typeof(ChangeRequestsType))]
+        public object Item {
             get {
-                return this.changeRequestsField;
+                return this.itemField;
             }
             set {
-                this.changeRequestsField = value;
+                this.itemField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ChangeRequestPackageType {
+        
+        private PackagedChangeRequestType[] packagedChangeRequestField;
+        
+        private string nameField;
+        
+        private ChangeRequestPackageTypePriority priorityField;
+        
+        private System.DateTime dueDateField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("PackagedChangeRequest")]
+        public PackagedChangeRequestType[] PackagedChangeRequest {
+            get {
+                return this.packagedChangeRequestField;
+            }
+            set {
+                this.packagedChangeRequestField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public ChangeRequestPackageTypePriority priority {
+            get {
+                return this.priorityField;
+            }
+            set {
+                this.priorityField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="date")]
+        public System.DateTime dueDate {
+            get {
+                return this.dueDateField;
+            }
+            set {
+                this.dueDateField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class PackagedChangeRequestType {
+        
+        private string descriptionField;
+        
+        private string nameField;
+        
+        private PackagedChangeRequestTypeChangeType changeTypeField;
+        
+        /// <remarks/>
+        public string Description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                this.descriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public PackagedChangeRequestTypeChangeType changeType {
+            get {
+                return this.changeTypeField;
+            }
+            set {
+                this.changeTypeField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    public enum PackagedChangeRequestTypeChangeType {
+        
+        /// <remarks/>
+        ChangeToExistingFunctionality,
+        
+        /// <remarks/>
+        NewFunctionality,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ChangeRequestsType {
+        
+        private ChangeRequestType[] changeRequestField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("ChangeRequest")]
+        public ChangeRequestType[] ChangeRequest {
+            get {
+                return this.changeRequestField;
+            }
+            set {
+                this.changeRequestField = value;
             }
         }
     }
@@ -165,5 +306,24 @@ namespace ChangeRequest_v1_0 {
         
         /// <remarks/>
         NewFunctionality,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    public enum ChangeRequestPackageTypePriority {
+        
+        /// <remarks/>
+        Critical,
+        
+        /// <remarks/>
+        Urgent,
+        
+        /// <remarks/>
+        Normal,
+        
+        /// <remarks/>
+        Low,
     }
 }
